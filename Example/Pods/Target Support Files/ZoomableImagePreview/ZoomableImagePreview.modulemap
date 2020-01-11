@@ -1,0 +1,6 @@
+framework module ZoomableImagePreview {
+  umbrella header "ZoomableImagePreview-umbrella.h"
+
+  export *
+  module * { export * }
+}

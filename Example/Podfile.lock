@@ -1,0 +1,16 @@
+PODS:
+  - ZoomableImagePreview (0.1.0)
+
+DEPENDENCIES:
+  - ZoomableImagePreview (from `../`)
+
+EXTERNAL SOURCES:
+  ZoomableImagePreview:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  ZoomableImagePreview: 350fd6719aaf9c7a4d56bb82e68ddc3d811bf4ef
+
+PODFILE CHECKSUM: 71030720d16654b711e02ebea5464396eb1283eb
+
+COCOAPODS: 1.8.4

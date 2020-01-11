@@ -1,0 +1,6 @@
+framework module Pods_ZoomableImagePreview_Example {
+  umbrella header "Pods-ZoomableImagePreview_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

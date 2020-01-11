@@ -28,9 +28,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		315939C6B1AE2428CBB498A7 /* ZoomableImagePreview.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = ZoomableImagePreview.podspec; path = ../ZoomableImagePreview.podspec; sourceTree = "<group>"; };
+		315939C6B1AE2428CBB498A7 /* ZoomableImagePreview.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ZoomableImagePreview.podspec; path = ../ZoomableImagePreview.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		3755F0CC5D907A54A6902640 /* Pods_ZoomableImagePreview_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZoomableImagePreview_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3AC1C1E0697012F15B9A90F1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		3AC1C1E0697012F15B9A90F1 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		41F49CD2F8D20BAFCC877707 /* Pods-ZoomableImagePreview_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZoomableImagePreview_Tests.release.xcconfig"; path = "Target Support Files/Pods-ZoomableImagePreview_Tests/Pods-ZoomableImagePreview_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		4F1ABEA3880BBD03D445C008 /* Pods-ZoomableImagePreview_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZoomableImagePreview_Example.release.xcconfig"; path = "Target Support Files/Pods-ZoomableImagePreview_Example/Pods-ZoomableImagePreview_Example.release.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* ZoomableImagePreview_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZoomableImagePreview_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,7 +45,7 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		98591EA10DDE2AE454E041EA /* Pods-ZoomableImagePreview_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZoomableImagePreview_Example.debug.xcconfig"; path = "Target Support Files/Pods-ZoomableImagePreview_Example/Pods-ZoomableImagePreview_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		E6A1BBC0C7DB7917ADE10B47 /* Pods_ZoomableImagePreview_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZoomableImagePreview_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F31533CC1AB64DE30D2D5E11 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		F31533CC1AB64DE30D2D5E11 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		FD83680CEC6AFBC810CCF8A0 /* Pods-ZoomableImagePreview_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZoomableImagePreview_Tests.debug.xcconfig"; path = "Target Support Files/Pods-ZoomableImagePreview_Tests/Pods-ZoomableImagePreview_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,7 +147,6 @@
 				FD83680CEC6AFBC810CCF8A0 /* Pods-ZoomableImagePreview_Tests.debug.xcconfig */,
 				41F49CD2F8D20BAFCC877707 /* Pods-ZoomableImagePreview_Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -213,6 +212,7 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = V6L5E4CY2N;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
@@ -227,6 +227,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -478,6 +479,7 @@
 			baseConfigurationReference = 98591EA10DDE2AE454E041EA /* Pods-ZoomableImagePreview_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = V6L5E4CY2N;
 				INFOPLIST_FILE = ZoomableImagePreview/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -493,6 +495,7 @@
 			baseConfigurationReference = 4F1ABEA3880BBD03D445C008 /* Pods-ZoomableImagePreview_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = V6L5E4CY2N;
 				INFOPLIST_FILE = ZoomableImagePreview/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
