@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyPageController: UIPageViewController {
+internal class MyPageController: UIPageViewController {
     lazy var scrollView: UIScrollView? = {
         let scrollView = view.subviews.filter({ $0.isKind(of: UIScrollView.self) }).first as! UIScrollView
         return scrollView
@@ -17,4 +17,17 @@ class MyPageController: UIPageViewController {
     var scrollEnabled: Bool! {
         willSet { scrollView?.isScrollEnabled = newValue }
     }
+    
+    var backgroundColor: UIColor? {
+        get {
+            guard
+                let color = view.backgroundColor else { return nil }
+            return color
+        }
+        
+        set {
+            self.view.backgroundColor = newValue
+        }
+    }
+    
 }

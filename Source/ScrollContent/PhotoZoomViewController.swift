@@ -8,14 +8,15 @@
 
 import UIKit
 
-class PhotoZoomViewController: UIViewController {
+internal class PhotoZoomViewController: UIViewController {
     
     // MARK: - Initialization Variables
+    var pageIndex: Int!
     var image: UIImage!
-    var pageIndex: Int?
     
     // MARK: - IBOutlets
     @IBOutlet private weak var scrollView: UIScrollView!
+    
     @IBOutlet private weak var imageView: UIImageView!
     
     @IBOutlet weak var imageViewTopConstraint: NSLayoutConstraint!
@@ -23,16 +24,18 @@ class PhotoZoomViewController: UIViewController {
     @IBOutlet weak var imageViewTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageViewBottomConstraint: NSLayoutConstraint!
     
+    // MARK: - Delegates
+    var presenter: PhotoZoomPresenterProtocol?
+    var delegate: ZoomableImagePreviewDelegate?
     convenience init(index: Int, image: UIImage) {
         self.init()
+        self.presenter = PhotoZoomPresenter()
         self.image = image
         self.pageIndex = index
     }
     
     init() {
-        super.init(nibName: String(describing: PhotoZoomViewController.self), bundle: Bundle(for: type(of: self)))
-        self.modalPresentationStyle = .fullScreen
-        print("initialized")
+        super.init(nibName: String(describing: Self.describe), bundle: Self.defaultBundle)
     }
     
     required init?(coder: NSCoder) {
@@ -45,15 +48,17 @@ class PhotoZoomViewController: UIViewController {
 extension PhotoZoomViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.scrollView.delegate = self
+        self.scrollView?.delegate = self
         self.imageView.image = image
-        
+        configureImage()
+        scrollView?.backgroundColor = .black
         updateZoomScaleForSize(view.bounds.size)
         updateConstraintsForSize(view.bounds.size)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        delegate?.zoomableImagePageWillAppear(pageIndex: pageIndex, contentView: scrollView)
     }
     
     override func viewDidLayoutSubviews() {
@@ -72,28 +77,27 @@ extension PhotoZoomViewController {
 // MARK: - Zoom Scale
 extension PhotoZoomViewController {
     private func updateZoomScaleForSize(_ size: CGSize) {
-        
-        let widthScale = size.width / imageView.bounds.width
-        let heightScale = size.height / imageView.bounds.height
-        let minScale = min(widthScale, heightScale)
-        scrollView.minimumZoomScale = minScale
-        
-        scrollView.zoomScale = minScale
-        scrollView.maximumZoomScale = minScale * 4
+        presenter?.calculateZoomScaleForSize(viewSize: size,
+                                             presentationSize: imageView?.bounds.size,
+                                             scaleFactor: 4.0, result: { (minScale, maxScale) in
+            scrollView?.minimumZoomScale = minScale
+            scrollView?.zoomScale = minScale
+            scrollView?.maximumZoomScale = maxScale
+        })
     }
     
     private func updateConstraintsForSize(_ size: CGSize) {
-        let yOffset = max(0, (size.height - imageView.frame.height) / 2)
-        imageViewTopConstraint.constant = yOffset
-        imageViewBottomConstraint.constant = yOffset
-        
-        let xOffset = max(0, (size.width - imageView.frame.width) / 2)
-        imageViewLeadingConstraint.constant = xOffset
-        imageViewTrailingConstraint.constant = xOffset
-
-        let contentHeight = yOffset * 2 + self.imageView.frame.height
-        self.scrollView.contentSize = CGSize(width: self.scrollView.contentSize.width, height: contentHeight)
-        UIView.animate(withDuration: 3.0, animations: view.layoutIfNeeded)
+        presenter?.calculateConstraintsForSize(
+            viewSize: size,
+            presentationSize: imageView.frame.size,
+            result: { (xOffset, yOffset, contentHeight) in
+                imageViewTopConstraint.constant = yOffset
+                imageViewBottomConstraint.constant = yOffset
+                imageViewLeadingConstraint.constant = xOffset
+                imageViewLeadingConstraint.constant = xOffset
+                scrollView?.contentSize = CGSize(width: scrollView?.contentSize.width ?? 0, height: contentHeight)
+                view.layoutIfNeeded()
+        })
         
     }
 }
@@ -102,7 +106,7 @@ extension PhotoZoomViewController {
 extension PhotoZoomViewController {
     private func configureImage() {
         if #available(iOS 11, *) {
-            scrollView.contentInsetAdjustmentBehavior = .never
+            scrollView?.contentInsetAdjustmentBehavior = .never
         }
         imageView.frame = CGRect(x: imageView.frame.origin.x,
                                  y: imageView.frame.origin.y,
@@ -111,10 +115,10 @@ extension PhotoZoomViewController {
     }
 }
 
-// MARK: - Public Access
+// MARK: - Change Scale
 extension PhotoZoomViewController {
     func revertToDefaultZoomScale() {
-        scrollView.zoomScale = scrollView.minimumZoomScale
+        scrollView?.zoomScale = scrollView?.minimumZoomScale ?? 1
     }
 }
 
