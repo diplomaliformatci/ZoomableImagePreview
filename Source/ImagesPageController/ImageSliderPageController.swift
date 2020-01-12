@@ -8,41 +8,7 @@
 
 import UIKit
 
-extension NSObject {
-    static var describe: String {
-        return String(describing: self)
-    }
-    
-    static var defaultBundle: Bundle {
-        return Bundle(for: self)
-    }
-}
-
 class ImageSliderPageController: UIViewController {
-    init() {
-        super.init(nibName: String(describing: Self.describe), bundle: Self.defaultBundle)
-    }
-    
-    convenience init(images: [UIImage]) {
-        self.init()
-        self.images = images
-    }
-
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-    
-    var currentIndex = 0
-    var nextIndex: Int?
-    var delegate: ZoomableImagePreviewDelegate?
-    
-    var images: [UIImage]!
-    
-    var backgroundColor: UIColor? {
-        get { return pageController.backgroundColor }
-        set { pageController.backgroundColor = newValue }
-    }
-    
     lazy var viewControllers: [PhotoZoomViewController] = {
         return images.enumerated().compactMap {
             let foo = PhotoZoomViewController(index: $0, image: $1)
@@ -53,13 +19,42 @@ class ImageSliderPageController: UIViewController {
     
     lazy var pageController: MyPageController = {
         let foo = MyPageController(transitionStyle: .scroll,
-                                              navigationOrientation: .horizontal,
-                                              options: [UIPageViewController.OptionsKey.interPageSpacing : view.bounds.width / 8])
+                                   navigationOrientation: .horizontal,
+                                   options: [UIPageViewController.OptionsKey.interPageSpacing : view.bounds.width / 8])
         foo.dataSource = self
         foo.delegate = self
         foo.setViewControllers([viewControllers.first!], direction: .forward, animated: true, completion: nil)
         return foo
     }()
+    
+    // MARK: - IBOutlets
+    @IBOutlet private weak var actionButtonOutlet: UIButton!
+    
+    // MARK: - Variables
+    var currentIndex = 0
+    var nextIndex: Int?
+    var delegate: ZoomableImagePreviewDelegate?
+    var images: [UIImage]!
+    
+    // MARK: - Properties
+    var backgroundColor: UIColor? {
+        get { return pageController.backgroundColor }
+        set { pageController.backgroundColor = newValue }
+    }
+    
+    // MARK: - Initialization
+    init() {
+        super.init(nibName: String(describing: Self.describe), bundle: Self.defaultBundle)
+    }
+    
+    convenience init(images: [UIImage]) {
+        self.init()
+        self.images = images
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
 }
 
 
@@ -68,10 +63,10 @@ extension ImageSliderPageController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.view.addSubview(pageController.view)
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        view.insertSubview(pageController.view, at: 0)
     }
 }
 
@@ -115,9 +110,34 @@ extension ImageSliderPageController: UIPageViewControllerDelegate {
 
 // MARK: - Public Access
 extension ImageSliderPageController: ZoomableImagePreview{
+    var actionButtonIsHidden: Bool? {
+        get {
+            return actionButtonOutlet.isHidden
+        }
+        set {
+            actionButtonOutlet.isHidden = newValue ?? false
+        }
+    }
+    
+    var actionButtonSetImage: UIImage? {
+        get {
+            return actionButtonOutlet.imageView?.image
+        }
+        set {
+            actionButtonOutlet.setImage(newValue, for: .normal)
+        }
+    }
+    
     func revertToDefaultZoomScale(pageIndex: Int) {
         let controller = viewControllers[pageIndex]
         self.revertToDefaultZoomScale(viewControllers: [controller])
+    }
+}
+
+// MARK: - IBAction
+extension ImageSliderPageController {
+    @IBAction func actionButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
 }
 

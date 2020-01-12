@@ -21,7 +21,8 @@ import Foundation
 public protocol ZoomableImagePreview: UIViewController {
     var delegate: ZoomableImagePreviewDelegate? { get set }
     var backgroundColor: UIColor? { get set }
-    
+    var actionButtonIsHidden: Bool? { get set }
+    var actionButtonSetImage: UIImage? { get set }
     func revertToDefaultZoomScale(pageIndex: Int)
     
 }

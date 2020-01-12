@@ -8,12 +8,12 @@
 import Foundation
 
 internal protocol PhotoZoomPresenterProtocol {
-    func calculateConstraintsForSize(viewSize: CGSize, presentationSize: CGSize, result: (_ xOffset: CGFloat, _ yOffset: CGFloat, _ contentHeight: CGFloat) -> ())
-    func calculateZoomScaleForSize(viewSize: CGSize, presentationSize: CGSize?, scaleFactor: CGFloat, result: (_ minScale: CGFloat, _ maxScale: CGFloat) -> ())
+    func calculateConstraintsForSize(result: (_ xOffset: CGFloat, _ yOffset: CGFloat, _ contentHeight: CGFloat) -> (), viewSize: CGSize, presentationSize: CGSize)
+    func calculateZoomScaleForSize(result: (_ minScale: CGFloat, _ maxScale: CGFloat) -> (), viewSize: CGSize, presentationSize: CGSize?, scaleFactor: CGFloat)
 }
 
 internal class PhotoZoomPresenter: PhotoZoomPresenterProtocol {
-    func calculateConstraintsForSize(viewSize: CGSize, presentationSize: CGSize, result: (_ xOffset: CGFloat, _ yOffset: CGFloat, _ contentHeight: CGFloat) -> ()) {
+    func calculateConstraintsForSize( result: (_ xOffset: CGFloat, _ yOffset: CGFloat, _ contentHeight: CGFloat) -> (), viewSize: CGSize, presentationSize: CGSize) {
         
         let differenceHeight = ( viewSize.height - presentationSize.height )
         let differenceWidth =  ( viewSize.width - presentationSize.width )
@@ -25,7 +25,7 @@ internal class PhotoZoomPresenter: PhotoZoomPresenterProtocol {
         result(xOffset, yOffset, contentHeight)
     }
     
-    func calculateZoomScaleForSize(viewSize: CGSize, presentationSize: CGSize?, scaleFactor: CGFloat, result: (_ minScale: CGFloat, _ maxScale: CGFloat) -> ()) {
+    func calculateZoomScaleForSize(result: (_ minScale: CGFloat, _ maxScale: CGFloat) -> (), viewSize: CGSize, presentationSize: CGSize?, scaleFactor: CGFloat) {
         guard let presentationSize = presentationSize else { return }
         
         let widthScale = viewSize.width / presentationSize.width
@@ -33,11 +33,5 @@ internal class PhotoZoomPresenter: PhotoZoomPresenterProtocol {
         let minScale = min(widthScale, heightScale)
         
         result(minScale, minScale * scaleFactor)
-    }
-}
-
-internal extension CGFloat {
-    @inlinable var halfOfIt: CGFloat {
-        return self / 2
     }
 }

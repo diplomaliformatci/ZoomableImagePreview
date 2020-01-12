@@ -17,6 +17,8 @@
 		34AD583223CA2B2200E9250C /* ZoomableImagePreviewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AD583123CA2B2200E9250C /* ZoomableImagePreviewBuilder.swift */; };
 		34AD583423CA2E6000E9250C /* PhotoZoomPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AD583323CA2E6000E9250C /* PhotoZoomPresenter.swift */; };
 		34AD583823CA484000E9250C /* PublicInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AD583723CA484000E9250C /* PublicInterfaces.swift */; };
+		34AD583F23CB4DFF00E9250C /* NSObject++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AD583E23CB4DFF00E9250C /* NSObject++.swift */; };
+		34AD584123CB4E2700E9250C /* CGFloat++.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AD584023CB4E2700E9250C /* CGFloat++.swift */; };
 		3AFBE8FCBE02DE8DFFF748C7F910D7BD /* Pods-ZoomableImagePreview_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA66822ABC530EC8EF5DF52FE8BAAA6 /* Pods-ZoomableImagePreview_Example-dummy.m */; };
 		659FA62F3C4CF3F12AAFA70E7880A847 /* ZoomableImagePreview-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 93B985C3DE6ED313B23C947BFD29962C /* ZoomableImagePreview-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		77C1A17BC2204CF5F93898D5380B7F11 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */; };
@@ -61,6 +63,8 @@
 		34AD583123CA2B2200E9250C /* ZoomableImagePreviewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomableImagePreviewBuilder.swift; sourceTree = "<group>"; };
 		34AD583323CA2E6000E9250C /* PhotoZoomPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoZoomPresenter.swift; sourceTree = "<group>"; };
 		34AD583723CA484000E9250C /* PublicInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicInterfaces.swift; sourceTree = "<group>"; };
+		34AD583E23CB4DFF00E9250C /* NSObject++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject++.swift"; sourceTree = "<group>"; };
+		34AD584023CB4E2700E9250C /* CGFloat++.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat++.swift"; sourceTree = "<group>"; };
 		406276FE2C94C74B090EB4C83874C06E /* Pods-ZoomableImagePreview_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ZoomableImagePreview_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		454013F0F1D129854E9A55397ABA2749 /* ZoomableImagePreview-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ZoomableImagePreview-prefix.pch"; sourceTree = "<group>"; };
 		4AECBC580DC77E7A644C4BA55D6AFFA0 /* ZoomableImagePreview.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = ZoomableImagePreview.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -159,9 +163,10 @@
 		345BF90723CA16DA00D3875D /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				34AD584223CB50D600E9250C /* Components */,
+				34AD583C23CB4DEF00E9250C /* Utilities */,
 				34E000EA23CA2A64009BFEC9 /* Initialization */,
 				345BF90823CA170C00D3875D /* ImagesPageController */,
-				345BF90B23CA170C00D3875D /* PageController */,
 				345BF90D23CA170C00D3875D /* ScrollContent */,
 			);
 			path = Source;
@@ -192,6 +197,31 @@
 				34AD583323CA2E6000E9250C /* PhotoZoomPresenter.swift */,
 			);
 			path = ScrollContent;
+			sourceTree = "<group>";
+		};
+		34AD583C23CB4DEF00E9250C /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				34AD583D23CB4DF500E9250C /* Extension */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		34AD583D23CB4DF500E9250C /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				34AD583E23CB4DFF00E9250C /* NSObject++.swift */,
+				34AD584023CB4E2700E9250C /* CGFloat++.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		34AD584223CB50D600E9250C /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				345BF90B23CA170C00D3875D /* PageController */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		34E000EA23CA2A64009BFEC9 /* Initialization */ = {
@@ -437,8 +467,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEFFD2AA344E4AD21E98D30CE335DC10 /* ZoomableImagePreview-dummy.m in Sources */,
+				34AD583F23CB4DFF00E9250C /* NSObject++.swift in Sources */,
 				34AD583223CA2B2200E9250C /* ZoomableImagePreviewBuilder.swift in Sources */,
 				345BF91023CA170C00D3875D /* ImageSliderPageController.swift in Sources */,
+				34AD584123CB4E2700E9250C /* CGFloat++.swift in Sources */,
 				345BF91423CA170C00D3875D /* PhotoZoomViewController.swift in Sources */,
 				34AD583423CA2E6000E9250C /* PhotoZoomPresenter.swift in Sources */,
 				345BF91223CA170C00D3875D /* PageController.swift in Sources */,

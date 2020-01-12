@@ -2,13 +2,15 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ImageSliderPageController" customModule="PageControllerZoom" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ImageSliderPageController" customModule="ZoomableImagePreview" customModuleProvider="target">
             <connections>
+                <outlet property="actionButtonOutlet" destination="ZaP-rD-T0Z" id="Cnx-9g-DrF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,7 +18,36 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3OK-8Y-7gy">
+                    <rect key="frame" x="24" y="68" width="40" height="40"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZaP-rD-T0Z">
+                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                            <state key="normal" title="X">
+                                <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="actionButtonTapped:" destination="-1" eventType="touchUpInside" id="ASu-M9-6QW"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="ZaP-rD-T0Z" firstAttribute="top" secondItem="3OK-8Y-7gy" secondAttribute="top" id="Hoh-ge-3LP"/>
+                        <constraint firstAttribute="trailing" secondItem="ZaP-rD-T0Z" secondAttribute="trailing" id="Hpw-2u-k8U"/>
+                        <constraint firstAttribute="width" constant="40" id="SGr-8C-j2j"/>
+                        <constraint firstAttribute="height" constant="40" id="Zx8-BO-mDG"/>
+                        <constraint firstAttribute="bottom" secondItem="ZaP-rD-T0Z" secondAttribute="bottom" id="bUF-oN-yXg"/>
+                        <constraint firstItem="ZaP-rD-T0Z" firstAttribute="leading" secondItem="3OK-8Y-7gy" secondAttribute="leading" id="das-gi-YcW"/>
+                    </constraints>
+                </view>
+            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="3OK-8Y-7gy" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="24" id="dND-WS-tT3"/>
+                <constraint firstItem="3OK-8Y-7gy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="tZj-w6-VIW"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="139" y="148"/>
         </view>

@@ -10,7 +10,6 @@ import UIKit
 import ZoomableImagePreview
 
 class ViewController: UIViewController {
-
     var images: [UIImage] {
         return (1...3).compactMap{ UIImage(named: "sample\($0)") }
     }

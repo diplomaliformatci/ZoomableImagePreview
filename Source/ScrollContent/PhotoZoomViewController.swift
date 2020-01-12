@@ -77,28 +77,22 @@ extension PhotoZoomViewController {
 // MARK: - Zoom Scale
 extension PhotoZoomViewController {
     private func updateZoomScaleForSize(_ size: CGSize) {
-        presenter?.calculateZoomScaleForSize(viewSize: size,
-                                             presentationSize: imageView?.bounds.size,
-                                             scaleFactor: 4.0, result: { (minScale, maxScale) in
-            scrollView?.minimumZoomScale = minScale
-            scrollView?.zoomScale = minScale
-            scrollView?.maximumZoomScale = maxScale
-        })
+        presenter?.calculateZoomScaleForSize(result: { (minScale, maxScale) in
+            scrollView.minimumZoomScale = minScale
+            scrollView.zoomScale = minScale
+            scrollView.maximumZoomScale = maxScale
+        }, viewSize: size, presentationSize: imageView.bounds.size, scaleFactor: 4.0)
     }
     
     private func updateConstraintsForSize(_ size: CGSize) {
-        presenter?.calculateConstraintsForSize(
-            viewSize: size,
-            presentationSize: imageView.frame.size,
-            result: { (xOffset, yOffset, contentHeight) in
-                imageViewTopConstraint.constant = yOffset
-                imageViewBottomConstraint.constant = yOffset
-                imageViewLeadingConstraint.constant = xOffset
-                imageViewLeadingConstraint.constant = xOffset
-                scrollView?.contentSize = CGSize(width: scrollView?.contentSize.width ?? 0, height: contentHeight)
-                view.layoutIfNeeded()
-        })
-        
+        presenter?.calculateConstraintsForSize(result: { (xOffset, yOffset, contentHeight) in
+            imageViewTopConstraint.constant = yOffset
+            imageViewBottomConstraint.constant = yOffset
+            imageViewLeadingConstraint.constant = xOffset
+            imageViewLeadingConstraint.constant = xOffset
+            scrollView.contentSize = CGSize(width: scrollView.contentSize.width, height: contentHeight)
+            view.layoutIfNeeded()
+        }, viewSize: size, presentationSize: imageView.frame.size)
     }
 }
 
